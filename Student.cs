@@ -6,7 +6,7 @@ public class Student
     private string lastName;
     private string major;
     private int creditHours;
-    private List<float> testScores;
+    private List<float> testScores=new List<float>();
     private classStatus classStatus;
     public Student(int id,string firstName,string lastName,string major,int creditHours){
         this.id=id;
@@ -19,7 +19,7 @@ public class Student
     {
         return this.creditHours;
     }
-    public void calculateClassStatus(int creditHours)
+    public void calculateClassStatus()
     {
         if(creditHours<=29)
         {
@@ -44,13 +44,13 @@ public class Student
     }
     public void calculateClassHours(int additionalHours)
     {
-        int totalHours=(this.creditHours+additionalHours);
+        int totalHours=this.creditHours+additionalHours;
         this.creditHours=totalHours;
-        calculateClassStatus(this.creditHours);
+        calculateClassStatus();
     }
     public void addTestScores(float testScore)
     {
-        (this.testScores).Add(testScore);
+        this.testScores.Add(testScore);
     }
     public List<string> giveTestScores()
     {
@@ -59,7 +59,65 @@ public class Student
         foreach(float score in this.testScores)
         {
             testScores.Add($"Test{i}: {score}");
+            i++;
         }
         return testScores;
+    }
+    public int getId()
+        {
+            return this.id;
+        }
+    public string getFirstName()
+    {
+        return this.firstName;
+    }
+    public string getLastName()
+    {
+        return this.lastName;
+    }
+    public string getMajor()
+    {
+        return this.major;
+    }
+    public string giveFullName()
+    {
+        return$"{firstName} {lastName}";
+    }
+    public classStatus getClassStatus()
+    {
+        return this.classStatus;
+    }
+    public float getAverageScore()
+    {
+        return testScores.Average();
+    }
+    public string getLetterGrade()
+    {
+        float averageScore=this.getAverageScore();
+        if(averageScore>90)
+        {
+            return "A";
+        }
+        else if(90>averageScore&&averageScore>80)
+        {
+            return "B";
+        }
+        else if(80>averageScore&&averageScore>70)
+        {
+            return "C";
+        }
+        else if(70>averageScore&&averageScore>60)
+        {
+            return "D";
+        }
+        else
+        {
+            return "F";
+        }
+    }
+    public void printStudentInfo()
+    {
+        Console.WriteLine($"{this.giveFullName}: {this.classStatus}({this.major})");
+        Console.WriteLine($"Average Score: {this.getAverageScore}% -- Grade: {this.getLetterGrade}");
     }
 }
