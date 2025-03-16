@@ -1,4 +1,4 @@
-
+namespace MidtermProject;
 public class Student
 {
     private int id;
@@ -7,6 +7,7 @@ public class Student
     private string major;
     private int creditHours;
     private List<float> testScores;
+    private classStatus classStatus;
     public Student(int id,string firstName,string lastName,string major,int creditHours){
         this.id=id;
         this.firstName=firstName;

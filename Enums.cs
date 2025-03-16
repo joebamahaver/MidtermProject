@@ -1,3 +1,4 @@
+namespace MidtermProject;
 public enum classStatus
 {
     Freshman,
